@@ -1,0 +1,59 @@
+# =========================
+# 1. GİZLİ BİLGİLER VE ORTAM
+# =========================
+# LLM API key'lerinin (OpenAI, Gemini vb.) bulunduğu dosya KESİNLİKLE gitmemeli!
+.env
+.env.*
+!.env.example
+
+# Sanal ortam (Virtual Environment) klasörleri
+venv/
+.venv/
+env/
+ENV/
+
+# =========================
+# 2. PYTHON ÖNBELLEK DOSYALARI
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# =========================
+# 3. TEST VE RAPORLAMA ÇIKTILARI (Pytest & Allure)
+# =========================
+.pytest_cache/
+.tox/
+.coverage
+htmlcov/
+coverage.xml
+
+# Test raporları ve ekran görüntüleri (Her testte yeniden oluşur)
+allure-results/
+allure-report/
+reports/
+test-results/
+*.html
+
+# =========================
+# 4. SELENIUM VE LOG DOSYALARI
+# =========================
+*.log
+geckodriver.log
+ghostdriver.log
+chromedriver.log
+# Hata anında alınan ekran görüntüleri
+screenshots/
+# İndirilen dosyalar (Test esnasında)
+downloads/
+
+# =========================
+# 5. IDE VE İŞLETİM SİSTEMİ DOSYALARI
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
