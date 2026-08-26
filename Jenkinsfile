@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        // Jenkins Credentials panelinden gizli şifreyi çekiyoruz
-        LLM_API_KEY = credentials('secret-llm-key')
-    }
-
     stages {
         stage('Kodu Çek (Checkout)') {
             steps {
