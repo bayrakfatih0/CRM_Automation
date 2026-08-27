@@ -18,7 +18,7 @@ pipeline {
         stage('Testleri Koştur (Run)') {
             steps {
                 // -e parametresi ile gizli API anahtarını konteynerin içine aktarıyoruz
-                sh 'docker run --rm -e LLM_API_KEY="$LLM_API_KEY%" crm-automation'
+                sh 'docker run --rm -e LLM_API_KEY="$LLM_API_KEY" crm-automation'
             }
         }
     }
