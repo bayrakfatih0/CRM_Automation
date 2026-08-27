@@ -8,6 +8,9 @@ def get_driver():
     chrome_options = Options()
     chrome_options.add_argument("--start-maximized")
     chrome_options.add_argument("--disable-notifications")
+    chrome_options.add_argument("--headless")  # Arayüzsüz çalışma
+    chrome_options.add_argument("--no-sandbox")  # Docker içinde root yetkisiyle çalışabilmesi için zorunlu
+    chrome_options.add_argument("--disable-dev-shm-usage")  # Konteyner bellek çökmelerini engeller
 
     service = Service(ChromeDriverManager().install())
 
