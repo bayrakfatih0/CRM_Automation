@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from core.base_page import BasePage
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.common.exceptions import TimeoutException
 
 
 class Dashboard(BasePage):
@@ -22,7 +23,7 @@ class Dashboard(BasePage):
     SUBCATEGORY = (By.NAME, "subCategory")
     PRIORITY = (By.NAME, "priority")
     CREATE_TICKET = (By.XPATH, "//atom-button[@id='create-ticket']/button")
-    SUCCESS_POPUP = (By.XPATH, "//molecule-toast//p[contains(text(), 'Ticket has been created')]")
+    SUCCESS_POPUP = (By.XPATH, "//p[contains(text(), 'Ticket has been created')]")
 
     def __init__(self, driver):
         super().__init__(driver)
@@ -109,6 +110,14 @@ class Dashboard(BasePage):
         popup_element = self.find_element(self.SUCCESS_POPUP)
         self.take_screenshot("Create ticket edildi")
         return popup_element.text
+
+    def wait_for_url_contains(self, partial_url):
+        try:
+            # Mevcut URL'in beklediğimiz kelimeyi içermesini belirtilen süre kadar bekler
+            self.wait.until(EC.url_contains(partial_url))
+            return True
+        except TimeoutException:
+            return False
 
 
 

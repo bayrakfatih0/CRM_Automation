@@ -3,9 +3,9 @@ from core.base_page import BasePage
 
 class LoginPage(BasePage):
 
-    KULLANICI_ADI_INPUT = (By.ID, "userName")
-    SIFRE_INPUT = (By.ID, "password")
-    GIRIS_BUTON = (By.XPATH, "//button[@type='submit']")
+    KULLANICI_ADI_INPUT = (By.NAME, "username")
+    SIFRE_INPUT = (By.NAME, "password")
+    GIRIS_BUTON = (By.NAME, "login")
 
     def __init__(self, driver):
         super().__init__(driver)

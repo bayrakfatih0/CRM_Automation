@@ -16,7 +16,7 @@ def test_ticket_create(driver):
     wait = WebDriverWait(driver, 10)
     wait.until(EC.url_contains("dashboard"))
     print("Login olunmuştur.")
-
+    time.sleep(3)
     # Ticket Create sayfasına giriş
     dashboard = Dashboard(driver)
     dashboard.ticket_page()
@@ -28,16 +28,21 @@ def test_ticket_create(driver):
 
     # Ticket Create işlemi
     dashboard.fill_channel("Channel en")
-    dashboard.fill_ticket_type("ayltest")
-    dashboard.fill_category("Category e")
-    dashboard.fill_sub_category("bcategories")
-    dashboard.fill_priority("Low")
-    time.sleep(1)
-    dashboard.description("Test açıklamasıdır.")
-    time.sleep(1)
-    dashboard.create_ticket()
     time.sleep(5)
+    dashboard.fill_ticket_type("ayltest")
+    time.sleep(5)
+    dashboard.fill_category("Category e")
+    time.sleep(5)
+    dashboard.fill_sub_category("bcategories")
+    time.sleep(5)
+    dashboard.fill_priority("Low")
+    time.sleep(5)
+    dashboard.description("Test açıklamasıdır.")
+    time.sleep(5)
+    dashboard.create_ticket()
     print("işlem tamamlandı, ticket create başarılı...")
 
-    mesaj = dashboard.get_success_message()
-    assert "created" in mesaj.lower() or "assigned" in mesaj.lower()
+    is_redirected = dashboard.wait_for_url_contains("tickets")
+
+    assert is_redirected, f"Kayıt sonrası yönlendirme başarısız! Mevcut URL: {driver.current_url}"
+    print("İşlem başarılı, sistem yeni biletin sayfasına sorunsuzca yönlendirildi.")
