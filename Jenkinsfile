@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    triggers {
+        cron('H 3 * * *')
+    }
+
     stages {
         stage('Kodu Çek (Checkout)') {
             steps {
@@ -24,13 +28,8 @@ pipeline {
     }
 
     post {
-        always {
-            echo 'Pipeline işlemi tamamlandı!'
-        }
-    }
-
-    post {
     always {
+        echo 'Pipeline işlemi tamamlandı!'
         publishHTML(target: [
             allowMissing: false,
             alwaysLinkToLastBuild: true,
