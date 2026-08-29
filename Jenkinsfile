@@ -38,6 +38,19 @@ pipeline {
             reportFiles: 'report.html',
             reportName: 'Otomasyon Raporu'
         ])
+        emailext (
+            subject: "Jenkins Otomasyon Sonucu: ${currentBuild.currentResult} - Build #${env.BUILD_NUMBER}",
+            body: """
+                <h2>CRM Otomasyon Koşum Özeti</h2>
+                <p>Test süreci tamamlandı. Sistemin son durumu aşağıdadır:</p>
+                <p><strong>Sonuç:</strong> ${currentBuild.currentResult}</p>
+                <br>
+                <p>Detaylı HTML raporunu incelemek için aşağıdaki bağlantıya tıklayın:</p>
+                <p><a href="${env.BUILD_URL}Otomasyon_20Raporu/"><strong>Jenkins Raporunu Görüntüle</strong></a></p>
+            """,
+            to: "bayrakfatih400@gmail.com", // Kendi mail adresini yaz
+            mimeType: 'text/html'
+        )
     }
     }
 }
