@@ -28,4 +28,17 @@ pipeline {
             echo 'Pipeline işlemi tamamlandı!'
         }
     }
+
+    post {
+    always {
+        publishHTML(target: [
+            allowMissing: false,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: '.',
+            reportFiles: 'report.html',
+            reportName: 'Otomasyon Raporu'
+        ])
+    }
+    }
 }

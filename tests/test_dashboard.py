@@ -28,17 +28,11 @@ def test_ticket_create(driver):
 
     # Ticket Create işlemi
     dashboard.fill_channel("Channel en")
-    time.sleep(5)
     dashboard.fill_ticket_type("ayltest")
-    time.sleep(5)
     dashboard.fill_category("Category e")
-    time.sleep(5)
     dashboard.fill_sub_category("bcategories")
-    time.sleep(5)
     dashboard.fill_priority("Low")
-    time.sleep(5)
     dashboard.description("Test açıklamasıdır.")
-    time.sleep(5)
     dashboard.create_ticket()
     print("işlem tamamlandı, ticket create başarılı...")
 
