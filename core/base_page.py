@@ -3,10 +3,8 @@ import time
 from datetime import datetime
 from selenium.common.exceptions import StaleElementReferenceException, TimeoutException
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.expected_conditions import element_to_be_clickable
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
 
 class BasePage:
     def __init__(self, driver, timeout=15):
@@ -16,20 +14,17 @@ class BasePage:
     def find_element(self, locator):
         self.wait_for_page_load()
         self.wait_for_loader()
-        # Elementin sayfada görünür olmasını bekler
         return self.wait.until(EC.visibility_of_element_located(locator))
 
     def click_element(self, locator):
         self.wait_for_page_load()
         self.wait_for_loader()
-        # Elementin tıklanabilir olmasını bekler ve tıklar
         element = self.wait.until(EC.element_to_be_clickable(locator))
         element.click()
 
     def enter_text(self, locator, text):
         self.wait_for_page_load()
         self.wait_for_loader()
-        # Elementi bulur, içini temizler ve metni yazar
         element = self.find_element(locator)
         element.clear()
         element.send_keys(text)
@@ -72,9 +67,15 @@ class BasePage:
 
     def wait_for_loader(self):
         from selenium.webdriver.support import expected_conditions as EC
-        # Kendi sistemindeki yükleme ikonunun class'ını yaz
         loader_locator = (By.CSS_SELECTOR, ".spinner, .loader")
         try:
             self.wait.until(EC.invisibility_of_element_located(loader_locator))
         except:
             pass
+
+    def wait_for_url_contains(self, partial_url):
+        try:
+            self.wait.until(EC.url_contains(partial_url))
+            return True
+        except TimeoutException:
+            return False

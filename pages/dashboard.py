@@ -4,8 +4,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from core.base_page import BasePage
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.common.exceptions import TimeoutException
-
 
 class Dashboard(BasePage):
 
@@ -14,7 +12,6 @@ class Dashboard(BasePage):
     FIRSTNAME = (By.ID, "firstName")
     SEARCH = (By.XPATH, "//button[@type='submit']")
     CUSTOMER = (By.XPATH, "//div[@row-id='{customer_id}']")
-
     EDITOR_IFRAME = (By.CSS_SELECTOR, "iframe.fr-iframe")
     EDITOR_METIN = (By.CSS_SELECTOR, "body.fr-view")
     CHANNEL = (By.NAME, "channel")
@@ -54,7 +51,6 @@ class Dashboard(BasePage):
         finally:
             self.driver.switch_to.default_content()
         time.sleep(1)
-        #self.take_screenshot("iframe_metin_yazildi")
 
     def fill_channel(self, channel_name:str):
         self.driver.execute_script("window.scrollTo(0, 0);")
@@ -65,7 +61,6 @@ class Dashboard(BasePage):
         time.sleep(1)
         option_locator = (By.XPATH, f"//span[normalize-space(text())='{channel_name}']")
         self.smart_click(option_locator)
-
 
     def fill_ticket_type(self, tickettype: str):
         input_element = self.find_element(self.TICKETTYPE)
@@ -110,14 +105,6 @@ class Dashboard(BasePage):
         popup_element = self.find_element(self.SUCCESS_POPUP)
         self.take_screenshot("Create ticket edildi")
         return popup_element.text
-
-    def wait_for_url_contains(self, partial_url):
-        try:
-            # Mevcut URL'in beklediğimiz kelimeyi içermesini belirtilen süre kadar bekler
-            self.wait.until(EC.url_contains(partial_url))
-            return True
-        except TimeoutException:
-            return False
 
 
 

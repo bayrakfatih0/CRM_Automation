@@ -1,7 +1,6 @@
 import os
 import google.generativeai as genai
 from dotenv import load_dotenv
-from sympy.physics.units import temperature
 
 load_dotenv()
 

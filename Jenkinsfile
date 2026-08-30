@@ -14,14 +14,12 @@ pipeline {
 
         stage('Docker İmajını İnşa Et') {
             steps {
-                // Windows kullandığın için 'bat' komutu kullanıyoruz
                 sh 'docker build -t crm-automation .'
             }
         }
 
         stage('Testleri Koştur (Run)') {
             steps {
-                // -e parametresi ile gizli API anahtarını konteynerin içine aktarıyoruz
                 sh 'docker run --rm -e LLM_API_KEY="$LLM_API_KEY" crm-automation'
             }
         }
@@ -48,7 +46,7 @@ pipeline {
                 <p>Detaylı HTML raporunu incelemek için aşağıdaki bağlantıya tıklayın:</p>
                 <p><a href="${env.BUILD_URL}Otomasyon_20Raporu/"><strong>Jenkins Raporunu Görüntüle</strong></a></p>
             """,
-            to: "bayrakfatih400@gmail.com", // Kendi mail adresini yaz
+            to: "bayrakfatih400@gmail.com",
             mimeType: 'text/html'
         )
     }
