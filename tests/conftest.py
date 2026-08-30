@@ -16,10 +16,10 @@ def driver():
 @pytest.fixture
 def authenticated_driver(driver):
     # 1. Login sayfasına git ve giriş yap
-    driver.get("https://etiya-csm-ui-test2.etiya.com/login")
+    driver.get("https://example.com/login")
     login_sayfasi = LoginPage(driver)
-    login_sayfasi.kullanici_adi_gir("csmadmin@etiya.com")
-    login_sayfasi.sifre_gir("csm123456!")
+    login_sayfasi.kullanici_adi_gir("ornek.com")
+    login_sayfasi.sifre_gir("123456")
     login_sayfasi.giris_butonuna_tikla()
 
     # 2. Girişin başarılı olduğunu doğrula ve sayfanın yüklenmesini bekle
