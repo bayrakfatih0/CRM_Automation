@@ -20,7 +20,7 @@ pipeline {
 
         stage('Testleri Koştur (Run)') {
             steps {
-                sh 'docker run --rm -v ${WORKSPACE}:/app -e LLM_API_KEY="$LLM_API_KEY" crm-automation pytest tests/ -n 4 --reruns 3 --reruns-delay 2 --html=report.html'
+                sh 'docker run --rm -v ${WORKSPACE}/allure-results:/app/allure-results -e LLM_API_KEY="$LLM_API_KEY" crm-automation pytest tests/ -n 4 --reruns 3 --reruns-delay 2 --alluredir=allure-results'
             }
         }
     }
