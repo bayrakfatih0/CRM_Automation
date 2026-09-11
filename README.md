@@ -34,7 +34,7 @@ Yerel Ortam (Local)
 Projeyi klonlayın ve klasöre girin:
 
 Bash
-git clone [https://github.com/KULLANICI_ADIN/CRM_Automation.git](https://github.com/bayrakfatih0/CRM_Automation)
+git clone [https://github.com/bayrakfatih0/CRM_Automation](https://github.com/bayrakfatih0/CRM_Automation)
 cd CRM_Automation
 
 Sanal ortamı oluşturun ve aktif edin:
