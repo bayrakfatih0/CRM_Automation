@@ -34,40 +34,29 @@ Yerel Ortam (Local)
 Projeyi klonlayın ve klasöre girin:
 
 Bash
-git clone [https://github.com/KULLANICI_ADIN/CRM_Automation.git](https://github.com/KULLANICI_ADIN/CRM_Automation.git)
+git clone [https://github.com/KULLANICI_ADIN/CRM_Automation.git](https://github.com/bayrakfatih0/CRM_Automation)
 cd CRM_Automation
 
 Sanal ortamı oluşturun ve aktif edin:
-
-Bash
 python -m venv venv
 source venv/bin/activate  # Windows için: venv\Scripts\activate
 
 Gereksinimleri yükleyin:
-
-Bash
 pip install -r requirements.txt
 Proje dizininde bir .env dosyası oluşturup LLM anahtarınızı girin:
-
 Kod snippet'i
 LLM_API_KEY=senin_gizli_anahtarin
+
 Testleri çalıştırın (Paralel, Rerun ve Allure desteği ile):
-
-Bash
 pytest tests/ -n auto --reruns 3 --reruns-delay 2 --alluredir=allure-results
-Allure Raporunu Görüntüleyin:
 
-Bash
+Allure Raporunu Görüntüleyin:
 allure serve allure-results
 
 Docker Üzerinde Çalıştırma
 Proje bilgisayarınızda arayüz açmadan izole bir konteyner içinde koşacak şekilde ayarlanmıştır:
 
 İmajı inşa edin:
-
-Bash
 docker build -t crm-automation .
 Konteyneri başlatın (Raporların ana bilgisayara kaydedilmesi için workspace volume'u bağlıdır):
-
-Bash
 docker run --rm -v ${PWD}/allure-results:/app/allure-results -e LLM_API_KEY="key"
